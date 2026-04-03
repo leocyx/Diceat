@@ -24,13 +24,13 @@ export default function MyCreatedGroups({
     <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-slate-100">
       <div className="flex justify-between items-center mb-6">
         <h2 className="font-black text-slate-900 flex items-center gap-2 text-sm uppercase tracking-wider">
-          <LayoutGrid size={18} className="text-indigo-600" />
+          <LayoutGrid size={18} className="text-red-700" />
           我的美食地圖
         </h2>
         {user && (
           <Link
             href="/groups/create"
-            className="w-8 h-8 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all"
+            className="w-8 h-8 bg-red-50 text-red-700 rounded-full flex items-center justify-center hover:bg-red-700 hover:text-white transition-all"
           >
             <Plus size={18} />
           </Link>
@@ -62,13 +62,13 @@ export default function MyCreatedGroups({
             </p>
           </div>
         ) : groups.length === 0 ? (
-          <div className="py-8 text-center px-6 bg-indigo-50/30 rounded-[2rem] border border-dashed border-indigo-100">
-            <p className="text-[10px] text-indigo-400 font-bold mb-3 uppercase tracking-tighter">
+          <div className="py-8 text-center px-6 bg-red-50/30 rounded-[2rem] border border-dashed border-red-100">
+            <p className="text-[10px] text-red-400 font-bold mb-3 uppercase tracking-tighter">
               清單空空如也...
             </p>
             <Link
               href="/groups/create"
-              className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-xl text-[10px] font-black shadow-lg shadow-indigo-100 uppercase"
+              className="inline-block bg-red-700 text-white px-4 py-2 rounded-xl text-[10px] font-black shadow-lg shadow-red-100 uppercase"
             >
               立即建立
             </Link>
@@ -80,8 +80,8 @@ export default function MyCreatedGroups({
               onClick={() => onSelectGroup(group)}
               className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group ${
                 selectedGroupId === group.id
-                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-100 scale-[1.02]"
-                  : "bg-slate-50 text-slate-600 hover:bg-white hover:shadow-md hover:ring-1 hover:ring-indigo-100"
+                  ? "bg-red-700 text-white shadow-lg shadow-red-100 scale-[1.02]"
+                  : "bg-slate-50 text-slate-600 hover:bg-white hover:shadow-md hover:ring-1 hover:ring-red-100"
               }`}
             >
               <div className="flex flex-col items-start overflow-hidden text-left">
@@ -91,7 +91,7 @@ export default function MyCreatedGroups({
                 <span
                   className={`text-[9px] font-medium ${
                     selectedGroupId === group.id
-                      ? "text-indigo-100"
+                      ? "text-red-100"
                       : "text-slate-400"
                   }`}
                 >
@@ -106,8 +106,8 @@ export default function MyCreatedGroups({
                       onClick={(e) => e.stopPropagation()}
                       className={`p-1.5 rounded-lg transition-all ${
                         selectedGroupId === group.id
-                          ? "hover:bg-white/20 text-indigo-100"
-                          : "hover:bg-indigo-50 text-slate-300 hover:text-indigo-600"
+                          ? "hover:bg-white/20 text-red-100"
+                          : "hover:bg-red-50 text-slate-300 hover:text-red-700"
                       }`}
                       title="編輯"
                     >
@@ -117,7 +117,7 @@ export default function MyCreatedGroups({
                       onClick={(e) => onDeleteGroup(group.id, e)}
                       className={`p-1.5 rounded-lg transition-all cursor-pointer ${
                         selectedGroupId === group.id
-                          ? "hover:bg-white/20 text-indigo-100"
+                          ? "hover:bg-white/20 text-red-100"
                           : "hover:bg-red-50 text-slate-300 hover:text-red-500"
                       }`}
                       title="刪除"

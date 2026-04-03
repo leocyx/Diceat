@@ -50,12 +50,12 @@ export default function ResetPasswordPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4 font-sans">
-      <Card className="w-full max-w-md mx-auto shadow-2xl shadow-indigo-100 border-indigo-50">
+      <Card className="w-full max-w-md mx-auto shadow-2xl shadow-red-100 border-red-50">
         <CardHeader className="text-center pb-8">
-          <div className="mx-auto w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200 mb-4">
+          <div className="mx-auto w-12 h-12 bg-red-700 rounded-xl flex items-center justify-center shadow-lg shadow-red-200 mb-4">
             <Lock className="text-white" size={24} />
           </div>
-          <CardTitle className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600">
+          <CardTitle className="text-3xl font-black text-red-700">
             重設密碼
           </CardTitle>
           <CardDescription className="font-medium text-slate-400">
@@ -122,7 +122,7 @@ export default function ResetPasswordPage() {
               )}
               <Button
                 type="submit"
-                className="w-full rounded-xl py-6 font-black shadow-lg shadow-indigo-100"
+                className="w-full rounded-xl py-6 font-black shadow-lg shadow-red-100"
                 isLoading={loading}
               >
                 更新密碼

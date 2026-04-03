@@ -57,12 +57,12 @@ export default function LoginForm() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto shadow-2xl shadow-indigo-100 border-indigo-50">
+    <Card className="w-full max-w-md mx-auto shadow-2xl shadow-red-100 border-red-50">
       <CardHeader className="text-center pb-8">
-        <div className="mx-auto w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200 mb-4">
+        <div className="mx-auto w-12 h-12 bg-red-700 rounded-xl flex items-center justify-center shadow-lg shadow-red-200 mb-4">
           <span className="text-white font-black text-2xl">D</span>
         </div>
-        <CardTitle className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600">Diceat</CardTitle>
+        <CardTitle className="text-3xl font-black text-red-700">Diceat</CardTitle>
         <CardDescription className="font-medium text-slate-400">歡迎回來！今天想吃什麼？</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -82,7 +82,7 @@ export default function LoginForm() {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <Label htmlFor="password" className="text-slate-700 font-bold">密碼</Label>
-              <Link href="/forgot-password" className="text-xs text-indigo-600 hover:text-indigo-700 font-bold">忘記密碼？</Link>
+              <Link href="/forgot-password" className="text-xs text-red-700 hover:text-red-800 font-bold">忘記密碼？</Link>
             </div>
             <Input 
               id="password" 
@@ -94,7 +94,7 @@ export default function LoginForm() {
             />
           </div>
           {error && <p className="text-xs text-red-500 font-medium bg-red-50 p-3 rounded-lg border border-red-100">{error}</p>}
-          <Button type="submit" className="w-full rounded-xl py-6 font-black shadow-lg shadow-indigo-100" isLoading={loading}>
+          <Button type="submit" className="w-full rounded-xl py-6 font-black shadow-lg shadow-red-100" isLoading={loading}>
             登入
           </Button>
         </form>
@@ -115,7 +115,7 @@ export default function LoginForm() {
       </CardContent>
       <CardFooter className="flex flex-wrap justify-center gap-1 text-sm text-slate-400 py-8">
         還沒有帳號？
-        <Link href="/register" className="text-indigo-600 font-bold hover:underline">
+        <Link href="/register" className="text-red-700 font-bold hover:underline">
           立即註冊
         </Link>
       </CardFooter>

@@ -1,6 +1,6 @@
-import { supabase } from "@/lib/supabase";
+import { SupabaseClient } from "@supabase/supabase-js";
 
-export async function getMyGroups(userId: string) {
+export async function getMyGroups(supabase: SupabaseClient, userId: string) {
   const { data, error } = await supabase
     .from("groups")
     .select(
@@ -16,14 +16,13 @@ export async function getMyGroups(userId: string) {
 
   if (error) throw error;
   
-  // Format the data
-  return data.map((group) => ({
+  return (data || []).map((group) => ({
     ...group,
-    restaurants: group.group_restaurants.map((gr: any) => gr.restaurants),
+    restaurants: (group.group_restaurants || []).map((gr: any) => gr.restaurants),
   }));
 }
 
-export async function getPublicGroups() {
+export async function getPublicGroups(supabase: SupabaseClient) {
   const { data, error } = await supabase
     .from("groups")
     .select(
@@ -39,19 +38,15 @@ export async function getPublicGroups() {
     .limit(12)
     .order("created_at", { ascending: false });
 
-  if (error) {
-    throw error;
-  }
+  if (error) throw error;
 
   return (data || []).map((group) => ({
     ...group,
-    restaurants: (group.group_restaurants || []).map(
-      (gr: any) => gr.restaurants,
-    ),
+    restaurants: (group.group_restaurants || []).map((gr: any) => gr.restaurants),
   }));
 }
 
-export async function getGroupById(groupId: string) {
+export async function getGroupById(supabase: SupabaseClient, groupId: string) {
   const { data, error } = await supabase
     .from("groups")
     .select(
@@ -69,34 +64,11 @@ export async function getGroupById(groupId: string) {
 
   return {
     ...data,
-    restaurants: data.group_restaurants.map((gr: any) => gr.restaurants),
+    restaurants: (data.group_restaurants || []).map((gr: any) => gr.restaurants),
   };
 }
 
-export async function deleteGroup(groupId: string) {
-  const { error } = await supabase.from("groups").delete().eq("id", groupId);
-
-  if (error) throw error;
-}
-
-// Favorite related functions
-export async function toggleFavorite(userId: string, groupId: string, isFavorited: boolean) {
-  if (isFavorited) {
-    const { error } = await supabase
-      .from("user_favorites")
-      .delete()
-      .eq("user_id", userId)
-      .eq("group_id", groupId);
-    if (error) throw error;
-  } else {
-    const { error } = await supabase
-      .from("user_favorites")
-      .insert([{ user_id: userId, group_id: groupId }]);
-    if (error) throw error;
-  }
-}
-
-export async function getFavoritedGroups(userId: string) {
+export async function getFavoritedGroups(supabase: SupabaseClient, userId: string) {
   const { data, error } = await supabase
     .from("user_favorites")
     .select(`
@@ -123,3 +95,4 @@ export async function getFavoritedGroups(userId: string) {
     };
   }).filter(Boolean);
 }
+

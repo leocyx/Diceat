@@ -41,7 +41,7 @@ export default function GroupSettingsForm({
             value={description}
             onChange={e => setDescription(e.target.value)}
             placeholder="簡單介紹一下這個群組吧..."
-            className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all outline-none h-24 resize-none mt-2 text-sm"
+            className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-700/20 focus:border-red-700 transition-all outline-none h-24 resize-none mt-2 text-sm"
           />
         </div>
         <div className="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
@@ -50,7 +50,7 @@ export default function GroupSettingsForm({
             id="isPublic"
             checked={isPublic}
             onChange={e => setIsPublic(e.target.checked)}
-            className="w-5 h-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
+            className="w-5 h-5 rounded border-slate-300 text-red-700 focus:ring-red-600 cursor-pointer"
           />
           <div className="flex flex-col">
             <Label htmlFor="isPublic" className="text-sm font-bold text-slate-700 cursor-pointer">

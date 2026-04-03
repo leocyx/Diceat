@@ -62,7 +62,7 @@ const Dice: React.FC<DiceProps> = ({ items, onFinish }) => {
         ...defaults,
         ...opts,
         particleCount: Math.floor(count * particleRatio),
-        colors: ["#6366f1", "#fbbf24", "#ec4899", "#ffffff"],
+        colors: ["#b91c1c", "#fbbf24", "#ec4899", "#ffffff"],
       });
     };
 
@@ -99,7 +99,7 @@ const Dice: React.FC<DiceProps> = ({ items, onFinish }) => {
           {faces.map((name, index) => (
             <div
               key={index}
-              className="absolute w-full h-full border-2 border-indigo-100 bg-white flex items-center justify-center p-4 text-center font-bold text-indigo-600 text-lg shadow-xl rounded-2xl"
+              className="absolute w-full h-full border-2 border-red-100 bg-white flex items-center justify-center p-4 text-center font-bold text-red-700 text-lg shadow-xl rounded-2xl"
               style={{
                 transform: faceTransforms[index],
                 backfaceVisibility: "hidden",
@@ -113,8 +113,8 @@ const Dice: React.FC<DiceProps> = ({ items, onFinish }) => {
       <button
         onClick={roll}
         disabled={isRolling || items.length === 0}
-        className={`px-10 py-4 bg-indigo-600 text-white rounded-full font-bold text-xl shadow-lg transition-all relative z-20 cursor-pointer
-          ${isRolling ? "opacity-50 cursor-not-allowed scale-95" : "hover:bg-indigo-700 hover:scale-105 active:scale-95"}
+        className={`px-10 py-4 bg-red-700 text-white rounded-full font-bold text-xl shadow-lg transition-all relative z-20 cursor-pointer
+          ${isRolling ? "opacity-50 cursor-not-allowed scale-95" : "hover:bg-red-800 hover:scale-105 active:scale-95"}
         `}
       >
         {isRolling ? "抽選中..." : "今天吃什麼？"}
@@ -126,7 +126,7 @@ const Dice: React.FC<DiceProps> = ({ items, onFinish }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-indigo-50 border border-indigo-100 px-8 py-4 rounded-2xl text-2xl font-black text-indigo-700 shadow-sm"
+              className="bg-red-50 border border-red-100 px-8 py-4 rounded-2xl text-2xl font-black text-red-700 shadow-sm"
             >
               🎉 就決定是：{winner}！
             </motion.div>

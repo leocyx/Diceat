@@ -7,8 +7,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getPublicGroups } from "@/services/api/groups";
 import { QUERY_STALE_TIME } from "@/lib/timeConstants";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 interface PublicGroupsSectionProps {
+  initialGroups: any[];
   onSelectGroup: (group: any) => void;
   favoriteGroupIds?: Set<string>;
   onToggleFavorite?: (groupId: string, isFavorited: boolean) => void;
@@ -16,6 +18,7 @@ interface PublicGroupsSectionProps {
 }
 
 export default function PublicGroupsSection({
+  initialGroups,
   onSelectGroup,
   favoriteGroupIds = new Set(),
   onToggleFavorite,
@@ -23,14 +26,14 @@ export default function PublicGroupsSection({
 }: PublicGroupsSectionProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
-
   const {
     data: groups,
     isPending,
     isError,
   } = useQuery({
     queryKey: ["groups", "public"],
-    queryFn: getPublicGroups,
+    queryFn: () => getPublicGroups(createClient()),
+    initialData: initialGroups,
     staleTime: QUERY_STALE_TIME,
   });
 
@@ -49,9 +52,9 @@ export default function PublicGroupsSection({
       <div className="flex flex-col lg:flex-row lg:items-center justify-between px-2 gap-6">
         <div className="flex flex-col">
           <h2 className="font-black text-2xl text-slate-900 flex items-center gap-2">
-            <Globe size={24} className="text-indigo-600" />
+            <Globe size={24} className="text-red-700" />
             熱門公開地圖
-            {isPending && (
+            {isPending && !initialGroups && (
               <span className="text-[10px] bg-amber-100 text-amber-600 px-2 py-0.5 rounded-full animate-pulse ml-2">
                 Syncing...
               </span>
@@ -71,13 +74,13 @@ export default function PublicGroupsSection({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="搜尋美食清單..."
-            className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all outline-none text-sm shadow-sm"
+            className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-700/20 focus:border-red-700 transition-all outline-none text-sm shadow-sm"
           />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-2">
-        {isPending ? (
+        {isPending && !initialGroups ? (
           [...Array(6)].map((_, i) => (
             <div
               key={i}
@@ -109,10 +112,8 @@ export default function PublicGroupsSection({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
-              onClick={() => {
-                onSelectGroup(group);
-              }}
-              className="bg-white p-7 rounded-[2.5rem] border border-slate-100 hover:shadow-2xl hover:shadow-indigo-100 hover:-translate-y-2 transition-all text-left group relative overflow-hidden"
+              onClick={() => onSelectGroup(group)}
+              className="bg-white p-7 rounded-[2.5rem] border border-slate-100 hover:shadow-2xl hover:shadow-red-100 hover:-translate-y-2 transition-all text-left group relative overflow-hidden"
             >
               {/* Favorite Button */}
               <button
@@ -152,13 +153,13 @@ export default function PublicGroupsSection({
                 </span>
               </div>
 
-              <h4 className="font-black text-slate-800 text-lg mb-3 group-hover:text-indigo-600 transition-colors leading-tight relative z-10">
+              <h4 className="font-black text-slate-800 text-lg mb-3 group-hover:text-red-700 transition-colors leading-tight relative z-10">
                 {group.name}
               </h4>
 
               <div className="flex items-center gap-2 relative z-10">
-                <div className="flex items-center gap-1.5 px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full">
-                  <MapPin size={10} className="fill-indigo-600" />
+                <div className="flex items-center gap-1.5 px-3 py-1 bg-red-50 text-red-700 rounded-full">
+                  <MapPin size={10} className="fill-red-700" />
                   <span className="text-[10px] font-black uppercase">
                     {group.restaurants?.length || 0} Places
                   </span>

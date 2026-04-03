@@ -48,13 +48,13 @@ export default function FavoritedGroups({
             </p>
           </div>
         ) : favoriteGroups.length === 0 ? (
-          <div className="py-8 text-center px-6 bg-indigo-50/30 rounded-[2rem] border border-dashed border-indigo-100">
-            <p className="text-[10px] text-indigo-400 font-bold mb-3 uppercase tracking-tighter leading-relaxed">
+          <div className="py-8 text-center px-6 bg-red-50/30 rounded-[2rem] border border-dashed border-red-100">
+            <p className="text-[10px] text-red-400 font-bold mb-3 uppercase tracking-tighter leading-relaxed">
               尚未收藏任何清單
               <br />
               快去下方探索熱門清單吧！
             </p>
-            <div className="flex justify-center text-indigo-200">
+            <div className="flex justify-center text-red-200">
               <Search size={20} />
             </div>
           </div>

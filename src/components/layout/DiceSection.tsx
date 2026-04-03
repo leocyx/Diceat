@@ -39,8 +39,8 @@ export default function DiceSection({
   return (
     <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 p-8 lg:p-12 relative overflow-hidden flex flex-col items-center justify-center min-h-[550px]">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-indigo-50 rounded-full blur-[100px] opacity-40" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-violet-50 rounded-full blur-[100px] opacity-40" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-red-50 rounded-full blur-[100px] opacity-40" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-red-50 rounded-full blur-[100px] opacity-40" />
       </div>
 
       {isLoading ? (
@@ -64,10 +64,10 @@ export default function DiceSection({
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="flex flex-col items-center text-center p-8 bg-indigo-50/50 rounded-[2.5rem] border border-dashed border-indigo-200 max-w-sm"
+              className="flex flex-col items-center text-center p-8 bg-red-50/50 rounded-[2.5rem] border border-dashed border-red-200 max-w-sm"
             >
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-xl shadow-indigo-100 mb-6">
-                <Utensils size={32} className="text-indigo-600" />
+              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-xl shadow-red-100 mb-6">
+                <Utensils size={32} className="text-red-700" />
               </div>
               <h3 className="text-xl font-black text-slate-900 mb-2">
                 {selectedGroup?.name}
@@ -81,13 +81,13 @@ export default function DiceSection({
                 user.id === selectedGroup?.creator_id ? (
                   <Link
                     href={`/groups/${selectedGroup.id}/edit`}
-                    className="bg-indigo-600 text-white px-8 py-3 rounded-2xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 flex items-center gap-2"
+                    className="bg-red-700 text-white px-8 py-3 rounded-2xl font-bold hover:bg-red-800 transition-all shadow-lg shadow-red-100 flex items-center gap-2"
                   >
                     <Plus size={18} />
                     立即加入餐廳
                   </Link>
                 ) : (
-                  <div className="text-xs font-bold text-indigo-400 uppercase tracking-widest">
+                  <div className="text-xs font-bold text-red-400 uppercase tracking-widest">
                     Wait for the owner to add items
                   </div>
                 )

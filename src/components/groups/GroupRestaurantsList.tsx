@@ -17,10 +17,10 @@ export default function GroupRestaurantsList({
 }: GroupRestaurantsListProps) {
   return (
     <aside className="bg-white rounded-3xl shadow-sm border border-slate-100 sticky top-[100px] overflow-hidden">
-      <div className="p-6 border-b border-slate-50 bg-indigo-50/30">
+      <div className="p-6 border-b border-slate-50 bg-red-50/30">
         <div className="flex justify-between items-center">
           <h2 className="font-bold text-slate-900 flex items-center gap-2">
-            <Utensils size={18} className="text-indigo-600" />
+            <Utensils size={18} className="text-red-700" />
             已選餐廳 ({restaurants.length})
           </h2>
           {onClearAll && restaurants.length > 0 && (
@@ -59,12 +59,15 @@ export default function GroupRestaurantsList({
                   initial={{ x: 20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -20, opacity: 0 }}
-                  className="group bg-slate-50 p-4 rounded-2xl flex justify-between items-center hover:bg-white hover:shadow-md hover:ring-1 hover:ring-indigo-100 transition-all"
+                  className="group bg-slate-50 p-4 rounded-2xl flex justify-between items-center hover:bg-white hover:shadow-md hover:ring-1 hover:ring-red-100 transition-all"
                 >
-                  <div className="flex-1">
-                    <h4 className="font-bold text-slate-800 text-sm group-hover:text-indigo-600 transition-colors">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-bold text-slate-800 text-sm group-hover:text-red-700 transition-colors">
                       {res.name}
                     </h4>
+                    {res.address && (
+                      <p className="text-[10px] text-slate-400 mt-0.5 truncate">{res.address}</p>
+                    )}
                     <div className="flex items-center gap-2 mt-1">
                       <span className="flex items-center gap-1 text-orange-500 font-bold text-[10px]">
                         <Star size={10} className="fill-orange-500" />
@@ -86,8 +89,8 @@ export default function GroupRestaurantsList({
       </div>
 
       <div className="p-6 bg-slate-50/50 border-t border-slate-100">
-        <div className="flex items-start gap-3 p-3 bg-white rounded-xl border border-indigo-50">
-          <Info size={16} className="text-indigo-400 mt-0.5 shrink-0" />
+        <div className="flex items-start gap-3 p-3 bg-white rounded-xl border border-red-50">
+          <Info size={16} className="text-red-400 mt-0.5 shrink-0" />
           <p className="text-[10px] text-slate-400 leading-relaxed">
             加入餐廳後，您可以在首頁進入此群組，使用 3D 骰子隨機決定午餐或晚餐！
           </p>

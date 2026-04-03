@@ -54,12 +54,12 @@ export default function RegisterForm() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto shadow-2xl shadow-indigo-100 border-indigo-50">
+    <Card className="w-full max-w-md mx-auto shadow-2xl shadow-red-100 border-red-50">
       <CardHeader className="text-center pb-8">
-        <div className="mx-auto w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200 mb-4">
+        <div className="mx-auto w-12 h-12 bg-red-700 rounded-xl flex items-center justify-center shadow-lg shadow-red-200 mb-4">
           <span className="text-white font-black text-2xl">D</span>
         </div>
-        <CardTitle className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600">加入 Diceat</CardTitle>
+        <CardTitle className="text-3xl font-black text-red-700">加入 Diceat</CardTitle>
         <CardDescription className="font-medium text-slate-400">建立您的美食清單，不再為下一餐煩惱</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -107,7 +107,7 @@ export default function RegisterForm() {
               {error}
             </p>
           )}
-          <Button type="submit" className="w-full rounded-xl py-6 font-black shadow-lg shadow-indigo-100" isLoading={loading}>
+          <Button type="submit" className="w-full rounded-xl py-6 font-black shadow-lg shadow-red-100" isLoading={loading}>
             註冊帳號
           </Button>
         </form>
@@ -128,7 +128,7 @@ export default function RegisterForm() {
       </CardContent>
       <CardFooter className="flex flex-wrap justify-center gap-1 text-sm text-slate-400 py-8">
         已經有帳號了？
-        <Link href="/login" className="text-indigo-600 font-bold hover:underline">
+        <Link href="/login" className="text-red-700 font-bold hover:underline">
           立即登入
         </Link>
       </CardFooter>
