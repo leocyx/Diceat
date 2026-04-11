@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import CreateGroupClient from "@/components/groups/CreateGroupClient";
+import MapsProvider from "@/components/map/MapsProvider";
 
 export default async function CreateGroupPage() {
   const supabase = await createClient();
@@ -10,5 +11,9 @@ export default async function CreateGroupPage() {
     redirect("/login");
   }
 
-  return <CreateGroupClient />;
+  return (
+    <MapsProvider>
+      <CreateGroupClient />
+    </MapsProvider>
+  );
 }

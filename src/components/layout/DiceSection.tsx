@@ -11,6 +11,7 @@ interface DiceSectionProps {
   diceItems: string[];
   isLoading: boolean;
   user: any;
+  className?: string;
 }
 
 // Sub-component to isolate dice header
@@ -18,9 +19,9 @@ const DiceHeader = memo(({ group }: { group: any }) => (
   <motion.div
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}
-    className="mb-10 flex flex-col items-center text-center w-full px-4"
+    className="mb-8 flex flex-col items-center text-center w-full px-4"
   >
-    <h2 className="text-4xl lg:text-5xl font-black text-slate-900 tracking-tighter mb-3 leading-tight">
+    <h2 className="text-3xl lg:text-4xl font-black text-slate-900 tracking-tighter mb-2 leading-tight">
       {group ? group.name : "想好吃什麼了嗎？"}
     </h2>
     <p className="text-slate-400 text-sm font-medium max-w-xs leading-relaxed mx-auto">
@@ -35,9 +36,12 @@ export default function DiceSection({
   diceItems,
   isLoading,
   user,
+  className,
 }: DiceSectionProps) {
   return (
-    <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 p-8 lg:p-12 relative overflow-hidden flex flex-col items-center justify-center min-h-[550px]">
+    <div
+      className={`bg-white rounded-[2.5rem] shadow-sm border border-slate-100 p-8 lg:p-12 relative overflow-hidden flex flex-col items-center justify-center min-h-[550px] ${className ?? ""}`}
+    >
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-red-50 rounded-full blur-[100px] opacity-40" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-red-50 rounded-full blur-[100px] opacity-40" />
@@ -54,7 +58,7 @@ export default function DiceSection({
           <div className="h-14 bg-slate-100 rounded-full w-40 mt-4" />
         </div>
       ) : (
-        <div className="relative z-10 w-full flex flex-col items-center min-h-[400px] justify-center">
+        <div className="relative z-10 w-full flex flex-col items-center justify-center flex-1">
           {diceItems.length > 0 ? (
             <>
               <DiceHeader group={selectedGroup} />

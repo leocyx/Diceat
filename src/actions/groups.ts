@@ -20,6 +20,7 @@ export async function deleteGroupAction(groupId: string) {
   }
 
   revalidatePath('/')
+  revalidatePath('/my-groups')
   return { success: true }
 }
 
@@ -46,6 +47,7 @@ export async function toggleFavoriteAction(groupId: string, isFavorited: boolean
   }
 
   revalidatePath('/')
+  revalidatePath('/favorites')
   return { success: true }
 }
 
@@ -79,7 +81,7 @@ export async function updateGroupAction(groupId: string, payload: {
     name: res.name,
     address: res.address,
     rating: res.rating,
-    photo_url: res.photoUrl,
+    photo_url: res.photoUrl || null,
     coordinate: { lat: res.lat, lng: res.lng },
   }));
 
@@ -106,6 +108,8 @@ export async function updateGroupAction(groupId: string, payload: {
   if (relError) throw relError;
 
   revalidatePath('/')
+  revalidatePath('/my-groups')
+  revalidatePath(`/groups/${groupId}`)
   revalidatePath(`/groups/${groupId}/edit`)
   return { success: true }
 }
@@ -143,7 +147,7 @@ export async function createGroupAction(payload: {
     name: res.name,
     address: res.address,
     rating: res.rating,
-    photo_url: res.photoUrl,
+    photo_url: res.photoUrl || null,
     coordinate: { lat: res.lat, lng: res.lng },
   }));
 

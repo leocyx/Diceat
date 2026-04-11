@@ -153,9 +153,14 @@ export default function PublicGroupsSection({
                 </span>
               </div>
 
-              <h4 className="font-black text-slate-800 text-lg mb-3 group-hover:text-red-700 transition-colors leading-tight relative z-10">
+              <h4 className="font-black text-slate-800 text-lg mb-1 group-hover:text-red-700 transition-colors leading-tight relative z-10">
                 {group.name}
               </h4>
+              {group.description && (
+                <p className="text-slate-400 text-xs font-medium mb-3 line-clamp-2 leading-relaxed relative z-10">
+                  {group.description}
+                </p>
+              )}
 
               <div className="flex items-center gap-2 relative z-10">
                 <div className="flex items-center gap-1.5 px-3 py-1 bg-red-50 text-red-700 rounded-full">

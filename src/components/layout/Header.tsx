@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LogOut, User as UserIcon } from "lucide-react";
+import { LogOut, User as UserIcon, LayoutGrid, Heart } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function Header() {
@@ -18,6 +18,23 @@ export default function Header() {
             Diceat
           </span>
         </Link>
+
+        <div className="hidden sm:flex items-center gap-1">
+          <Link
+            href="/my-groups"
+            className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-red-700 hover:bg-red-50 rounded-full transition-all"
+          >
+            <LayoutGrid size={15} />
+            我的地圖
+          </Link>
+          <Link
+            href="/favorites"
+            className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-slate-600 hover:text-red-700 hover:bg-red-50 rounded-full transition-all"
+          >
+            <Heart size={15} />
+            收藏
+          </Link>
+        </div>
 
         <div className="flex items-center gap-4">
           {user ? (

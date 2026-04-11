@@ -1,5 +1,4 @@
 import Header from "@/components/layout/Header";
-import MapsProvider from "@/components/map/MapsProvider";
 
 export default function MainLayout({
   children,
@@ -7,11 +6,11 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <MapsProvider>
+    <>
       <Header />
       <main>
         {children}
       </main>
-    </MapsProvider>
+    </>
   );
 }

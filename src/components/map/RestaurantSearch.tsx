@@ -123,7 +123,7 @@ export default function RestaurantSearch({
       name: selectedPlace.name || "",
       address: selectedPlace.formatted_address || "",
       rating: selectedPlace.rating || 0,
-      photoUrl: selectedPlace.photos?.[0]?.getUrl() || "",
+      photoUrl: selectedPlace.photos?.[0]?.getUrl({ maxWidth: 800 }) || "",
       lat: selectedPlace.geometry?.location?.lat() || 0,
       lng: selectedPlace.geometry?.location?.lng() || 0,
     };

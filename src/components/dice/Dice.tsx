@@ -76,18 +76,18 @@ const Dice: React.FC<DiceProps> = ({ items, onFinish }) => {
   };
 
   const faceTransforms = [
-    "translateZ(100px)", // Front
-    "rotateY(180deg) translateZ(100px)", // Back
-    "rotateY(90deg) translateZ(100px)", // Right
-    "rotateY(-90deg) translateZ(100px)", // Left
-    "rotateX(90deg) translateZ(100px)", // Top
-    "rotateX(-90deg) translateZ(100px)", // Bottom
+    "translateZ(80px)", // Front
+    "rotateY(180deg) translateZ(80px)", // Back
+    "rotateY(90deg) translateZ(80px)", // Right
+    "rotateY(-90deg) translateZ(80px)", // Left
+    "rotateX(90deg) translateZ(80px)", // Top
+    "rotateX(-90deg) translateZ(80px)", // Bottom
   ];
 
   return (
-    <div className="relative pt-10 text-center w-full flex flex-col items-center">
+    <div className="relative pt-4 text-center w-full flex flex-col items-center">
       <div
-        className="relative w-[200px] h-[200px] mb-22"
+        className="relative w-[160px] h-[160px] mb-8"
         style={{ perspective: "1000px" }}
       >
         <motion.div
@@ -113,13 +113,13 @@ const Dice: React.FC<DiceProps> = ({ items, onFinish }) => {
       <button
         onClick={roll}
         disabled={isRolling || items.length === 0}
-        className={`px-10 py-4 bg-red-700 text-white rounded-full font-bold text-xl shadow-lg transition-all relative z-20 cursor-pointer
+        className={`px-10 py-3 bg-red-700 text-white rounded-full font-bold text-lg shadow-lg transition-all relative z-20 cursor-pointer
           ${isRolling ? "opacity-50 cursor-not-allowed scale-95" : "hover:bg-red-800 hover:scale-105 active:scale-95"}
         `}
       >
         {isRolling ? "抽選中..." : "今天吃什麼？"}
       </button>
-      <div className="h-20 mt-8 flex items-center justify-center">
+      <div className="mt-3 flex items-center justify-center">
         <AnimatePresence>
           {winner && !isRolling && (
             <motion.div
