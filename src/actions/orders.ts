@@ -43,37 +43,50 @@ export async function createGroupOrderAction(payload: {
   return { success: true, id: order.id }
 }
 
-export async function upsertSelectionAction(payload: {
+export async function submitSelectionsAction(payload: {
   groupOrderId: string
-  itemId: string
-  quantity: number
+  selections: Array<{ itemId: string; quantity: number }>
 }) {
   const supabase = await createClient()
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('Unauthorized')
 
-  if (payload.quantity === 0) {
+  const { data: order, error: orderError } = await supabase
+    .from('group_orders')
+    .select('status')
+    .eq('id', payload.groupOrderId)
+    .maybeSingle()
+
+  // null = 查不到（RLS 阻擋，即揪團已關閉且非 creator）或不存在，一律視為已關閉
+  if (orderError) throw new Error(orderError.message)
+  if (!order || order.status === 'closed') throw new Error('ORDER_CLOSED')
+
+  const toDelete = payload.selections.filter((s) => s.quantity === 0).map((s) => s.itemId)
+  const toUpsert = payload.selections
+    .filter((s) => s.quantity > 0)
+    .map((s) => ({
+      group_order_id: payload.groupOrderId,
+      item_id: s.itemId,
+      user_id: user.id,
+      quantity: s.quantity,
+      updated_at: new Date().toISOString(),
+    }))
+
+  if (toDelete.length > 0) {
     const { error } = await supabase
       .from('group_order_selections')
       .delete()
-      .eq('item_id', payload.itemId)
+      .in('item_id', toDelete)
       .eq('user_id', user.id)
 
     if (error) throw new Error(error.message)
-  } else {
+  }
+
+  if (toUpsert.length > 0) {
     const { error } = await supabase
       .from('group_order_selections')
-      .upsert(
-        {
-          group_order_id: payload.groupOrderId,
-          item_id: payload.itemId,
-          user_id: user.id,
-          quantity: payload.quantity,
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: 'item_id,user_id' }
-      )
+      .upsert(toUpsert, { onConflict: 'item_id,user_id' })
 
     if (error) throw new Error(error.message)
   }
