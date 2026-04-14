@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { ArrowLeft, Edit, Utensils } from "lucide-react";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import { toggleFavoriteAction } from "@/actions/groups";
 import DiceSection from "@/components/layout/DiceSection";
 import RestaurantCard from "@/components/groups/RestaurantCard";
+import CreateOrderModal from "@/components/orders/CreateOrderModal";
 
 interface GroupDetailClientProps {
   group: any;
@@ -16,6 +17,7 @@ interface GroupDetailClientProps {
 
 export default function GroupDetailClient({ group, user }: GroupDetailClientProps) {
   const router = useRouter();
+  const [orderTarget, setOrderTarget] = useState<{ id: string; name: string } | null>(null);
 
   const diceItems = useMemo(
     () => group.restaurants.map((r: any) => r.name),
@@ -83,12 +85,26 @@ export default function GroupDetailClient({ group, user }: GroupDetailClientProp
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {group.restaurants.map((r: any) => (
-                <RestaurantCard key={r.id} restaurant={r} />
+                <RestaurantCard
+                  key={r.id}
+                  restaurant={r}
+                  onCreateOrder={user ? (id, name) => setOrderTarget({ id, name }) : undefined}
+                />
               ))}
             </div>
           )}
         </section>
       </div>
+
+      {orderTarget && (
+        <CreateOrderModal
+          restaurantId={orderTarget.id}
+          restaurantName={orderTarget.name}
+          groupId={group.id}
+          isOpen={!!orderTarget}
+          onClose={() => setOrderTarget(null)}
+        />
+      )}
     </div>
   );
 }

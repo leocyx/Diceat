@@ -1,4 +1,4 @@
-import { MapPin, Star, Utensils } from "lucide-react";
+import { MapPin, ShoppingBag, Star, Utensils } from "lucide-react";
 
 interface RestaurantCardProps {
   restaurant: {
@@ -8,9 +8,10 @@ interface RestaurantCardProps {
     rating: number | null;
     photo_url: string | null;
   };
+  onCreateOrder?: (restaurantId: string, restaurantName: string) => void;
 }
 
-export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
+export default function RestaurantCard({ restaurant, onCreateOrder }: RestaurantCardProps) {
   return (
     <div className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden hover:shadow-xl hover:shadow-red-50 hover:-translate-y-1 transition-all group">
       {/* Photo */}
@@ -48,6 +49,16 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
             <MapPin size={11} className="mt-0.5 shrink-0 text-red-400" />
             <span className="line-clamp-2">{restaurant.address}</span>
           </div>
+        )}
+
+        {onCreateOrder && (
+          <button
+            onClick={() => onCreateOrder(restaurant.id, restaurant.name)}
+            className="mt-4 w-full flex items-center justify-center gap-1.5 bg-red-700 hover:bg-red-800 text-white text-xs font-bold py-2 rounded-xl transition-colors"
+          >
+            <ShoppingBag size={13} />
+            揪團點餐
+          </button>
         )}
       </div>
     </div>
