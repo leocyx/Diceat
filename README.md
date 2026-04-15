@@ -5,7 +5,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-Auth_%26_DB-3ECF8E?style=for-the-badge&logo=supabase)](https://supabase.com/)
 
-**Diceat** 是一個結合 Google Maps 與 3D 互動遊戲體驗的餐廳選擇平台。旨在解決現代人每天最煩惱的問題：「今天吃什麼？」。使用者可以建立專屬的美食清單，並透過有趣的 3D 骰子動畫隨機抽出下一餐的勝者。
+**Diceat** 是一個結合 Google Maps 與 3D 互動遊戲體驗的餐廳選擇平台。旨在解決現代人每天最煩惱的問題：「今天吃什麼？」。使用者可以建立專屬的美食清單，透過有趣的 3D 骰子動畫隨機抽出下一餐的勝者，還能一鍵發起揪團點餐，讓朋友共同填寫各自想點的餐點。
 
 ---
 
@@ -22,6 +22,13 @@
 - **經典 3D 骰子**：高品質 3D 動畫與平滑旋轉效果。
 - **五重煙火特效**：抽出結果後觸發繽紛特效，增加決定晚餐的樂趣。
 
+### 🛒 揪團點餐
+
+- **一鍵建立揪團**：在任一餐廳 card 點擊「揪團點餐」，輸入菜單品項與價格後即可建立。
+- **分享連結協作**：每個揪團有獨立頁面，複製連結傳給朋友，登入後即可填寫自己的數量。
+- **點餐總覽**：頁面即時顯示所有人的點餐明細、個人小計與全體總計。
+- **建立者管理**：可關閉揪團（防止繼續修改）或刪除揪團。
+
 ### 🔐 完善的會員系統
 
 - **多種登入方式**：支援 Google OAuth 快速登入及傳統電子郵件密碼驗證。
@@ -32,7 +39,7 @@
 
 ## 🛠️ 技術棧
 
-- **前端框架**: Next.js 15 (App Router)
+- **前端框架**: Next.js 16 (App Router)
 - **使用者介面**: React 19 + Framer Motion (動畫)
 - **樣式解決方案**: Tailwind CSS 4
 - **狀態管理**: TanStack Query v5 (React Query)
